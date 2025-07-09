@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "ai.aviad.plugin": "https://github.com/aviad-ai/unity-plugin.git#v0.0.1",
+    "ai.aviad.core": "https://github.com/aviad-ai/unity.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.ads": "4.4.2",

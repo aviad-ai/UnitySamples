@@ -1,151 +1,188 @@
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 using Aviad;
 
 public class PluginTest : MonoBehaviour
 {
-    private AviadDialogue dialogue = new AviadDialogue();
+    public AviadRunner runner;
+
+    [Header("Dialogue Configuration")]
+    public List<string> initialRoles = new List<string>();
+
+    [TextArea(3, 10)]
+    public List<string> initialContents = new List<string>();
+    public string characterName = "Character";
+
+    [Header("UI Elements")]
+    public TMP_Text conversationText;
+    public TMP_InputField userInputField;
+    public Button sendButton;
+    public Button resetButton;
+    public Button startButton;
 
     private bool isConversationStarted = false;
     private bool isSending = false;
 
-    private string userInput = "";
     private string assistantOutput = "";
     private string conversation = "";
-    private Vector2 scrollPosition = Vector2.zero;
+    private List<string> additionalRoles = new List<string>();
+    private List<string> additionalContents = new List<string>();
 
-    private async void Start()
+    private bool needsUIUpdate = false;
+
+
+    private void Start()
     {
-        try
+        startButton.onClick.AddListener(() =>
         {
-            await dialogue.InitializeAsync();
-        }
-        catch (System.Exception ex)
-        {
-            Debug.LogError("[PluginTest] Init failed: " + ex.Message);
-        }
-    }
-
-    private void OnGUI()
-    {
-        const int padding = 10;
-        const int buttonWidth = 100;
-        const int textAreaHeight = 150;
-        const int inputHeight = 30;
-
-        GUILayout.BeginArea(new Rect(padding, padding, Screen.width - 2 * padding, Screen.height - 2 * padding));
-
-        GUILayout.Label("Aviad Plugin Test");
-
-        if (!isConversationStarted)
-        {
-            if (GUILayout.Button("Start", GUILayout.Width(buttonWidth)) && !isSending)
+            if (!isSending && runner.IsAvailable)
             {
-                if (dialogue.IsInitialized)
+                StartConversation();
+            }
+        });
+
+        sendButton.onClick.AddListener(() => {
+            if (!isSending)
+            {
+                SendUserMessage();
+            }
+        });
+
+        userInputField.onEndEdit.AddListener((string text) => {
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
+            {
+                if (!isSending)
                 {
-                    _ = StartConversation();
+                    SendUserMessage();
                 }
             }
-        }
-        else
-        {
-            GUILayout.Label("Conversation:");
-            scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.Height(textAreaHeight));
-            GUILayout.Label(conversation);
-            GUILayout.EndScrollView();
+        });
 
-            GUILayout.Label("Your Input:");
-            userInput = GUILayout.TextField(userInput, GUILayout.Height(inputHeight));
-
-            GUILayout.BeginHorizontal();
-            if (GUILayout.Button("Send", GUILayout.Width(buttonWidth)) && !isSending)
-            {
-                _ = SendUserMessage();
-            }
-            if (GUILayout.Button("Reset", GUILayout.Width(buttonWidth)) && !isSending)
+        resetButton.onClick.AddListener(() => {
+            if (!isSending)
             {
                 ResetConversation();
             }
-            GUILayout.EndHorizontal();
-        }
+        });
 
-        GUILayout.EndArea();
+        UpdateObjectStates();
+    }
+
+    private void UpdateObjectStates()
+    {
+        startButton.gameObject.SetActive(!isConversationStarted);
+        sendButton.gameObject.SetActive(isConversationStarted);
+        resetButton.gameObject.SetActive(isConversationStarted);
+        userInputField.gameObject.SetActive(isConversationStarted);
+        conversationText.gameObject.SetActive(isConversationStarted);
     }
 
     private void ResetConversation()
     {
-        dialogue.Reset();
+        runner.Reset();
         isConversationStarted = false;
-        userInput = "";
         assistantOutput = "";
         conversation = "";
+        additionalRoles.Clear();
+        additionalContents.Clear();
+        UpdateObjectStates();
     }
 
-    private async Task StartConversation()
+    private void StartConversation()
     {
-        isSending = true;
-        assistantOutput = $"{dialogue.CharacterName}: ";
-        isConversationStarted = true;
-
+        int count = Mathf.Min(initialRoles.Count, initialContents.Count);
+        for (int i = 0; i < count; i++)
+        {
+            runner.AddTurnToContext(initialRoles[i], initialContents[i]);
+        }
         try
         {
-            await dialogue.StartConversation(UpdateAssistantResponse);
+            isSending = true;
+            isConversationStarted = true;
+            UpdateObjectStates();
+            UpdateConversationDisplay();
+            assistantOutput = $"{characterName}: ";
+            runner.Generate(UpdateAssistantResponse, CompleteTurn);
         }
         catch (System.Exception ex)
         {
             assistantOutput = "Error: " + ex.Message;
         }
-
-        isSending = false;
     }
 
-    private async Task SendUserMessage()
+    private void SendUserMessage()
     {
-        isSending = true;
-
         try
         {
-            if (!string.IsNullOrWhiteSpace(userInput))
+            string userMessage = userInputField.text;
+            if (!string.IsNullOrWhiteSpace(userMessage))
             {
-                string userMessage = userInput;
-                assistantOutput = $"{dialogue.CharacterName}: ";
-				userInput = "";
-                await dialogue.Say(userMessage, UpdateAssistantResponse);
+                userInputField.text = "";
+                additionalRoles.Add("users");
+                additionalContents.Add($"User: {userMessage}");
+                runner.AddTurnToContext("user", userMessage);
+                isSending = true;
+                assistantOutput = $"{characterName}: ";
+                runner.Generate(UpdateAssistantResponse, CompleteTurn);
             }
         }
         catch (System.Exception ex)
         {
             assistantOutput = "Error: " + ex.Message;
         }
-
-        isSending = false;
     }
 
     private void UpdateAssistantResponse(string partialResponse)
     {
-        assistantOutput = $"{dialogue.CharacterName}: {partialResponse}";
+        assistantOutput += partialResponse;
         UpdateConversationDisplay();
+#if UNITY_WEBGL && !UNITY_EDITOR
+        Update();
+#endif
+    }
+
+    private void CompleteTurn(bool response)
+    {
+        additionalRoles.Add("assistant");
+        additionalContents.Add(assistantOutput);
+        assistantOutput = "";
+        UpdateConversationDisplay();
+        isSending = false;
     }
 
     private void UpdateConversationDisplay()
     {
         // Always include all user and assistant messages including the current assistantOutput
         conversation = "";
-
-        for (int i = 2; i < dialogue.Contents.Count; i++)
+        int initialCount = Mathf.Min(initialRoles.Count, initialContents.Count);
+        for (int i = 0; i < initialCount; i++)
         {
-            conversation += $"{dialogue.Contents[i]}\n";
+            conversation += $"{initialContents[i]}\n";
         }
-
-        if (!conversation.EndsWith(assistantOutput + "\n"))
+        int additionalCount = Mathf.Min(additionalRoles.Count, additionalContents.Count);
+        for (int i = 0; i < additionalCount; i++)
         {
-            conversation += assistantOutput + "\n";
+            conversation += $"{additionalContents[i]}\n";
         }
-        scrollPosition.y = float.MaxValue;
+        conversation += assistantOutput;
+        needsUIUpdate = true;
     }
 
-    private async void OnDestroy()
+    private void Update()
     {
-        await dialogue.Shutdown();
+        if (needsUIUpdate)
+        {
+            conversationText.text = conversation;
+            var scrollRect = conversationText.GetComponentInParent<ScrollRect>();
+            if (scrollRect != null)
+            {
+                Canvas.ForceUpdateCanvases();
+                scrollRect.verticalNormalizedPosition = 0f;
+            }
+            needsUIUpdate = false;
+        }
     }
 }
