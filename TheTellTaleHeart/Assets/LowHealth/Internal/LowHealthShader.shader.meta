@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 855a586a879ad704696606d4618b1a7f
+timeCreated: 1578480144
+licenseType: Store
+ShaderImporter:
+  defaultTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161911
+  packageName: Low Health
+  packageVersion: 1.1
+  assetPath: Assets/LowHealth/Internal/LowHealthShader.shader
+  uploadId: 579394

@@ -1,0 +1,228 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &47581542621484175
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 439390482712649252}
+  - component: {fileID: 3422438531148447034}
+  m_Layer: 0
+  m_Name: GameState
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &439390482712649252
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47581542621484175}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1039.2877, y: -11.900372, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3422438531148447034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 47581542621484175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1880bc068a2c47d48b7ebc0c6d5d0e31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characters:
+  - name: Dracula
+    material: {fileID: 2100000, guid: 2df4df86c3505fe4d969e73b01ef6b77, type: 2}
+    description: An elegant predator who collects secrets like wine, despises the
+      dawn, and savors the hush before a heartbeat ends.
+  - name: Lady Macbeth
+    material: {fileID: 2100000, guid: 31fb58dc7175c514899023ced6aea73a, type: 2}
+    description: Sharp-tongued and sharper-willed. Laughs only when she knows you're
+      uneasy. Guilt clings to her like perfume she can't wash away.
+  - name: Dorian Gray
+    material: {fileID: 2100000, guid: c05089242d2ee19448a31d542362c043, type: 2}
+    description: A flawless mask hiding rot, he courts every vice with bored delight.
+  - name: Ophelia
+    material: {fileID: 2100000, guid: 6d52074fc5203b4498cc3f5ae5adfe82, type: 2}
+    description: A delicate soul unraveling, she gathers fading flowers and fears
+      thunder more than madness.
+  scenarios:
+  - name: A cradle's secrets
+    material: {fileID: 2100000, guid: a9fbc2625d5bdf54681a281a3a32c28e, type: 2}
+    description: Scratch marks appear on the underside of the crib frame.
+    availableChoices:
+    - Inspect the marks closely
+    - Cover them with paint
+    - Set a sensor to detect further scratching
+  - name: Still forms
+    material: {fileID: 2100000, guid: 4d76597f04347aa4681f6fdc80e262ae, type: 2}
+    description: In the dressing room, a pair of mannequins are found posed in a
+      kneeling position, facing the door.
+    availableChoices:
+    - Reposition them into neutral stances
+    - Close the room and never enter again
+    - Kneel with them to see what happens
+  - name: Forgotten room
+    material: {fileID: 2100000, guid: fe47ea9a54ebe224585db91a8302d981, type: 2}
+    description: The grandfather clock chimes thirteen times at midnight.
+    availableChoices:
+    - Stop the clock and inspect its mechanism
+    - Ignore it and record the sound
+    - Remove the pendulum to silence it
+  - name: Subtle impressions
+    material: {fileID: 2100000, guid: e195b290eaabb1548bc62c5d53cc9cbd, type: 2}
+    description: Each dawn, you notice impressions in the carpet around your bed,
+      like someone has been standing there all night.
+    availableChoices:
+    - Sprinkle flour around your bed
+    - Pretend to fall asleep
+    - Move out of the house
+  - name: Grandmother's portrait
+    material: {fileID: 2100000, guid: 460ebbd18a07e2e4ca2f810d8dfe86b6, type: 2}
+    description: An oil portrait of your grandmother is slowly fading from the canvas,
+      her face replaced by an unfamiliar silhouette.
+    availableChoices:
+    - Paint your granmother back in
+    - Let it finish transforming
+    - Donate the painting
+  - name: Waiting doll
+    material: {fileID: 2100000, guid: bb734fb7f6d3be7478e9a8306d46bb75, type: 2}
+    description: A porcelain doll is found sitting upright though it was laid flat
+      the night before.
+    availableChoices:
+    - Leave it and observe overnight
+    - Place it in a locked cabinet
+    - Speak gently to the doll
+  - name: Moving angels
+    material: {fileID: 2100000, guid: 2f2e45983e7b946aa952bedb366cca36, type: 2}
+    description: The angel's head turns slightly to face whoever enters the room.
+    availableChoices:
+    - Mark its position to confirm movement
+    - Face away and avoid eye contact
+    - Stare directly back at it
+  - name: Unseen Dancers
+    material: {fileID: 2100000, guid: 0695dd41cc0114d00a852751c35590fd, type: 2}
+    description: Shadows dance on the walls even when no one is in the room.
+    availableChoices:
+    - Stand still and watch the shadows
+    - Turn off all lights completely
+    - Move around to see if shadows follow
+  - name: Marked Passage
+    material: {fileID: 2100000, guid: 164134f6560ba406788321c11db979d4, type: 2}
+    description: Pages turn by themselves in an open book, always stopping at the
+      same passage.
+    availableChoices:
+    - Memorize the specific passage
+    - Close the book and lock it away
+    - Read the passage aloud
+  - name: Changing flames
+    material: {fileID: 2100000, guid: b99bbe21c75624947bd73142319e0e19, type: 2}
+    description: The flames burn different colors each night - blue, green, then
+      purple.
+    availableChoices:
+    - Test the flame temperature
+    - Cover the candles with glass
+    - Hold objects in the colored flames
+  - name: Quiet repairs
+    material: {fileID: 2100000, guid: b0f2066f3d18c445083081b55430632a, type: 2}
+    description: Fresh mortar appears between crumbling stones, as if someone is
+      trying to repair the walls.
+    availableChoices:
+    - Analyze the mortar's composition
+    - Help with the mysterious repairs
+    - Tear down the fresh mortar
+  - name: Reflections of the past
+    material: {fileID: 2100000, guid: eadddc0c0888a4ac099d8fd1bcb6b136, type: 2}
+    description: Each crystal reflects a different room, showing scenes from the
+      past.
+    availableChoices:
+    - Study each reflection carefully
+    - Look for yourself in the visions
+    - Shatter the crystals one by one
+  - name: Watching crows
+    material: {fileID: 2100000, guid: b51cdd682098d412bb69123ba0edb192, type: 2}
+    description: Multiple crows gather outside, all staring at you through the window.
+    availableChoices:
+    - Count them and note their behavior
+    - Go outside to meet them
+    - Close all curtains and blinds
+  - name: Faces in the ivy
+    material: {fileID: 2100000, guid: 367a509cacaef4d5eae037975dd3e5c2, type: 2}
+    description: Faces appear in the ivy's leaf patterns, expressions changing with
+      the seasons.
+    availableChoices:
+    - Sketch the faces you recognize
+    - Speak to the faces directly
+    - Burn sections of the ivy
+  - name: The other side
+    material: {fileID: 2100000, guid: 2f18a2ab9847a421c913b0ac5eac581b, type: 2}
+    description: When you look through the keyhole, you see your own eye looking
+      back.
+    availableChoices:
+    - Study your reflection carefully
+    - Try to touch your other self
+    - Cover all mirrors in the house
+  - name: Whispering mask
+    material: {fileID: 2100000, guid: 00e6bc09bfbdf45a683ccea0ee2fc834, type: 2}
+    description: Voices whisper from behind the mask, speaking in languages you don't
+      recognize.
+    availableChoices:
+    - Record and translate the languages
+    - Whisper back in the same tongues
+    - Stuff the mask with cotton
+  - name: Night bloom
+    material: {fileID: 2100000, guid: 2427df53600664753882276828fe36a3, type: 2}
+    description: The rose blooms only at night, closing its petals completely during
+      the day.
+    availableChoices:
+    - Study its nocturnal blooming cycle
+    - Stay awake all night with it
+    - Force the petals open during day
+  - name: Fading glass
+    material: {fileID: 2100000, guid: 9a2feaccb2df042a5babc6e6941e41f5, type: 2}
+    description: The window's colors drain away at sunset, returning vividly at dawn.
+    availableChoices:
+    - Time the color changes precisely
+    - Touch the glass during transitions
+    - Paint over the faded sections
+  - name: Singing stairs
+    material: {fileID: 2100000, guid: 4ebdd70def14c480bb0c5d626307deec, type: 2}
+    description: The stairs creak out a melody when you walk on them.
+    availableChoices:
+    - Play the melody on an instrument
+    - Dance to the staircase music
+    - Walk silently on the edges
+  - name: Restored strings
+    material: {fileID: 2100000, guid: c713f68c3cc5747beac664ead31f3784, type: 2}
+    description: The violin's strings snap one by one, but reform themselves by morning.
+    availableChoices:
+    - Examine the reformed strings
+    - Help restring it yourself
+    - Cut the strings as they reform
+  - name: The bridal chorus
+    material: {fileID: 2100000, guid: 72827975011b841c0ab91b373f3b591b, type: 2}
+    description: Wedding music plays whenever you touch the dress, growing louder
+      with contact.
+    availableChoices:
+    - Identify the wedding songs
+    - Hum along with the music
+    - Wear gloves when handling it
+  playerInfo:
+    lives: 5
+    maxLives: 5
+    playerText: The Author has achieved nothing.
+    score: 0

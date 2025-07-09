@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: f20a54c170dc5374990efd77d77dd6b7
+timeCreated: 1579776514
+licenseType: Store
+DefaultImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161911
+  packageName: Low Health
+  packageVersion: 1.1
+  assetPath: Assets/LowHealth/Examples/Example_3_DirectAccess.unity
+  uploadId: 579394

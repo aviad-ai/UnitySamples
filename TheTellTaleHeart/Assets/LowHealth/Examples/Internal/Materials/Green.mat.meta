@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e4be852f4dc296f46a917a4457d0a008
+timeCreated: 1579777824
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161911
+  packageName: Low Health
+  packageVersion: 1.1
+  assetPath: Assets/LowHealth/Examples/Internal/Materials/Green.mat
+  uploadId: 579394

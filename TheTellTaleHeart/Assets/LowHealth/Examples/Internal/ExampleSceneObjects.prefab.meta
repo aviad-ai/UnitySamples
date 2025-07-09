@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 77824d6680e19d146819a210fda169fb
+timeCreated: 1579883261
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161911
+  packageName: Low Health
+  packageVersion: 1.1
+  assetPath: Assets/LowHealth/Examples/Internal/ExampleSceneObjects.prefab
+  uploadId: 579394

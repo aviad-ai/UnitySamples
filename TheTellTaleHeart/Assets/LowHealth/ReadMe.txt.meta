@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 65835ca6a7cec4548b71507529653780
+timeCreated: 1579788218
+licenseType: Store
+TextScriptImporter:
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161911
+  packageName: Low Health
+  packageVersion: 1.1
+  assetPath: Assets/LowHealth/ReadMe.txt
+  uploadId: 579394

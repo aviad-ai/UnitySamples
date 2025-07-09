@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 27cc5ae100db63643897e40d46de843b
+timeCreated: 1579777824
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161911
+  packageName: Low Health
+  packageVersion: 1.1
+  assetPath: Assets/LowHealth/Examples/Internal/Materials/Red.mat
+  uploadId: 579394

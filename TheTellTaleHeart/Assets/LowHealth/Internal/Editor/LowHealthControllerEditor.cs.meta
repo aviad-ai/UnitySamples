@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 8d3b5efb7e767e44e9a82fc189cbc326
+timeCreated: 1578560762
+licenseType: Store
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 161911
+  packageName: Low Health
+  packageVersion: 1.1
+  assetPath: Assets/LowHealth/Internal/Editor/LowHealthControllerEditor.cs
+  uploadId: 579394
